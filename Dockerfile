@@ -1,12 +1,16 @@
 from node:slim
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+MAINTAINER Rousseau L. Braga rbraga@nuxman.com.br
 
-RUN npm -g install sails
-RUN npm install pm2@latest -g
-RUN npm install -g mocha
-RUN npm install -g bower
+RUN apt-get update && apt-get install -y git
+
+RUN npm install -g sails grunt bower pm2 npm-check-updates sails-mongo
+
+RUN mkdir -p /usr/src/app
+
+VOLUME ["usr/src/app"]
+
+WORKDIR /usr/src/app
 
 EXPOSE 1337
 
